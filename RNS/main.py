@@ -33,10 +33,13 @@ def rns_addition(x, y, moduli):
 
 # Inicjalizacja modułów RNS.
 moduli = [3, 5, 7]
+# moduli = [23, 29, 31]
 
 # Inicjalizacja liczb dziesiętnych.
-num1 = 10
-num2 = 15
+# num1 = 10+9
+# num2 = 15
+num1 = 99
+num2 = 7
 
 # Konwersja liczb dziesiętnych na system reszt (RNS).
 num1_rns = decimal_to_rns(num1, moduli)
