@@ -70,7 +70,7 @@ def parallel_prefix(n: int, g_0: List[int], p_0: List[int], g_prime: List[int], 
                 counter = counter + 1
 
     # c_out = g_out[-1] or p_out[-1]
-    c_out = not (g_out[0] or g_prime_out[0])  # C_out = ~(G[0] or G'[0]) TODO
+    c_out = True  # TODO
 
     return g_out, p_out, g_prime_out, c_out
 
