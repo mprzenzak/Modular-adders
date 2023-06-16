@@ -1,3 +1,4 @@
+import math
 from typing import List, Tuple
 
 
@@ -58,7 +59,8 @@ def parallel_prefix(n: int, g_0: List[int], p_0: List[int], g_prime: List[int], 
         g_prime_out[i] = g_prime[i]
         p_prime_out[i] = p_prime[i]
 
-    for i in range(0, 3):  # Parallel-prefix loop through layers
+    layers = math.ceil(math.log2(n))  # Number of layers in parallel-prefix network
+    for i in range(0, layers):  # Parallel-prefix loop through layers
         for j in range((n - 2), -1, -1):  # Parallel-prefix loop through vector from end to beginning
             g_out[j] = g_out[j] or (g_out[j + 1] and p_out[j])
             g_prime_out[j] = g_prime_out[j] or (g_prime_out[j + 1] and p_prime_out[j])
@@ -69,8 +71,7 @@ def parallel_prefix(n: int, g_0: List[int], p_0: List[int], g_prime: List[int], 
 
                 counter = counter + 1
 
-    # c_out = g_out[-1] or p_out[-1]
-    c_out = True  # TODO
+    c_out = g_prime_out[0] or p_prime_out[0]
 
     return g_out, p_out, g_prime_out, c_out
 
@@ -122,8 +123,8 @@ def binary_to_integer(bin_list: List[int]) -> int:
     return int(''.join(str(bit) for bit in bin_list), 2)  # 2 because binary
 
 
-A = 127  # A < 2^n - 1
-B = 64  # B < 2^n - 1
+A = 63  # A < 2^n - 1
+B = 32  # B < 2^n - 1
 K = 5  # 3 <= K <= 2^(n-1) - 1
 n = 7  # N >= 4
 # 70 mod 54 = 70 (-)
